@@ -14,6 +14,9 @@ golden_run/
 *_golden_run.xlsm
 tests/fixtures/run_check/
 
+# Mini fixtures (regenerate with: python tests/create_mini_fixtures.py)
+tests/fixtures/*_mini.xlsm
+
 # Word documents (not part of the codebase)
 *.docx
 
