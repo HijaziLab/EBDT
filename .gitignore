@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# R artifacts
+.Rhistory
+.RData
+.Rproj.user/
+
+# Temp run artefacts
+golden_run/
+*_golden_run.xlsm
+tests/fixtures/run_check/
+
+# Word documents (not part of the codebase)
+*.docx
+
+# Root-level CSV duplicates (canonical copies live in requiredData/)
+/kinaseInhibitionSpecificity.csv
+/listOfKinases.csv
+
+# Papers folder
+papers/
