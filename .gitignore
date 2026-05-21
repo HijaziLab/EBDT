@@ -26,3 +26,8 @@ tests/fixtures/*_mini.xlsm
 
 # Papers folder
 papers/
+
+# Per-cell-line PDT workbooks (summary data is in PDTs.xlsx)
+MCF7_PDTs.xlsx
+HL60_PDTs.xlsx
+NTERA2_PDTs.xlsx
