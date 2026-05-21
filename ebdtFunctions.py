@@ -237,7 +237,7 @@ def makeKSlistOfKinaseDownstreamTargets(cellLineWb, ratios, probKinases, pValues
 				fdr = fdrValues[phosphosite]
 				prob = probKinases[kinase][phosphosite]
 				ratio = ratios[kinase][phosphosite]
-				if prob > probabilityThreshold and ratio > ratioThreshold and fdr < 0.02:
+				if prob >= probabilityThreshold and ratio >= ratioThreshold and fdr < 0.02:
 					substrates.extend(site for site in phosphosite.split(";") if len(site)>0)
 		kinaseSubstrates[kinase] = substrates
 

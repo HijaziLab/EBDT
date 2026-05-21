@@ -5,9 +5,9 @@ unit test for makeKSlistOfKinaseDownstreamTargets().
 
 This function filters psites and determines which are the putative substrates of each kinase
 For a psite to be included, 3 conditions must meet simultaneously
-    1. prob > probabilityThreshold
-    2. ratio > ratioThreshold
-    3. fdr <0.02  (fixed threshold in the code)
+    1. prob >= probabilityThreshold
+    2. ratio >= ratioThreshold
+    3. fdr < 0.02  (fixed threshold in the code)
 
 Moreover, psites that contain the next residues will be excluded:
     'None', '(M', '(R', '(K'
@@ -74,10 +74,23 @@ def _run(wb, probs=None, ratios=None, fdr=None, ratio_t=0.5, prob_t=0.5):
 
 def test_sitio_incluido_cuando_supera_triple_umbral(empty_wb):
     """
-    SITE1: prob=1.0>0.5, ratio=1.0>0.5, fdr=0.01<0.02 : must appear
+    SITE1: prob=1.0>=0.5, ratio=1.0>=0.5, fdr=0.01<0.02 : must appear
     in the substrate list of KinaseX.
     """
     result = _run(empty_wb)
+    assert "SITE1" in result["KinaseX"]
+
+
+def test_sitio_incluido_en_el_umbral_exacto(empty_wb):
+    """
+    Boundary test: prob == probabilityThreshold and ratio == ratioThreshold
+    must be INCLUDED (>= is non-strict, matching VBA behaviour).
+    """
+    probs  = {"KinaseX": {"SITE1;": 0.5}}   # exactly at threshold
+    ratios = {"KinaseX": {"SITE1;": 0.5}}   # exactly at threshold
+    fdr    = {"SITE1;": 0.001}
+
+    result = _run(empty_wb, probs=probs, ratios=ratios, fdr=fdr, prob_t=0.5, ratio_t=0.5)
     assert "SITE1" in result["KinaseX"]
 
 

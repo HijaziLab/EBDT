@@ -28,9 +28,9 @@ from ebdtFunctions import GetExpectancyOfBeingDownstreamTarget
 
 # ==== PARAMETERS OF THE PIPELINE (must match with those used when generating golden) ====
 
-INHIBITION_THRESHOLD   = 0.1
-RATIO_THRESHOLD        = 0.2
-PROBABILITY_THRESHOLD  = 0.5
+INHIBITION_THRESHOLD   = 0.5
+RATIO_THRESHOLD        = 0.5
+PROBABILITY_THRESHOLD  = 0.75
 
 
 # ==== FIXTURE: EXECUTED REAL PIPELINE ====

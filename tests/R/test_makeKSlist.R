@@ -47,6 +47,17 @@ test_that("site included when overcomes prob, ratio y fdr", {
   expect_true("SITE1" %in% result[["KinaseX"]])
 })
 
+test_that("site included at exact threshold boundary (>= VBA behaviour)", {
+  # prob == probabilityThreshold and ratio == ratioThreshold must be INCLUDED
+  probs_tmp <- list(KinaseX = list("SITE1;" = 0.5))   # exactly at threshold
+  rats_tmp  <- list(KinaseX = list("SITE1;" = 0.5))   # exactly at threshold
+  fdr_tmp   <- list("SITE1;" = 0.001)
+
+  result <- run_makeks(probs = probs_tmp, rats = rats_tmp, fdr = fdr_tmp,
+                       ratio_t = 0.5, prob_t = 0.5)
+  expect_true("SITE1" %in% result[["KinaseX"]])
+})
+
 test_that("site excluded when FDR is high", {
   probs_tmp <- list(KinaseX = list("SITE2;" = 1.0))
   rats_tmp  <- list(KinaseX = list("SITE2;" = 1.0))

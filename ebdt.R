@@ -287,7 +287,7 @@ makeKSlistOfKinaseDownstreamTargets <- function(cellLineWb, ratios, probKinases,
 				prob  <- probKinases[[kinase]][[phosphosite]]
 				ratio <- ratios[[kinase]][[phosphosite]]
 				if (!is.null(prob) && !is.null(ratio) &&
-				    prob > probabilityThreshold && ratio > ratioThreshold &&
+				    prob >= probabilityThreshold && ratio >= ratioThreshold &&
 				    !is.null(fdr) && fdr < 0.02) {
 					sites      <- strsplit(phosphosite, ";")[[1]]
 					sites      <- sites[nchar(sites) > 0]
